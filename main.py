@@ -3,6 +3,8 @@ from output.sound_handler import Sound_Handler
 from input_handler import Input_Handler
 from datetime import datetime
 from time import sleep
+import atexit
+import RPi.GPIO as GPIO
 
 def main():
     outh = Display_Handler()
@@ -36,11 +38,13 @@ def main():
         if timer == timerlist[-1] and rest <= 0:
             break
         if rest<=10.4 and flag==0:
-            t = Sound_Handler(datetime.now())
+            t = Sound_Handler(datetime.now(),rest)
             t.start()
             flag = 1
         if rest <= 0 :
+            print(rest)
             t.stop()
+            t.play()
             flag = 0
             c = c+1
         outh.set_second_line(outh.seconds_to_time(rest))
@@ -62,6 +66,9 @@ def main():
     while True:
         if outh.display.buttonPressed(outh.display.SELECT):
             break
-
-while True:
-    main()
+try:
+    while True:
+        atexit.register(GPIO.cleanup)
+        main()
+except KeyboardInterrupt:
+    GPIO.cleanup()

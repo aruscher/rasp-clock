@@ -40,13 +40,11 @@ class Display_Handler():
         self.display.setCursor(col,row)
 
     def list_to_time(self,list):
-        return "%d%d:%d%d:%d%d" % (list[0],list[1],list[2],list[3],list[4],\
-                list[5])
+        return "%d%d:%d%d" % (list[0],list[1],list[2],list[3])
 
     def seconds_to_time(self,seconds):
         m,s = divmod(seconds,60)
-        h,m = divmod(m,60)
-        return "%02d:%02d:%02d" % (h,m,s)
+        return "%02d:%02d" % (m,s)
 
     def list_to_number(self,list):
         number = 0

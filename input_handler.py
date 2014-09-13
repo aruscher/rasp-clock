@@ -22,13 +22,13 @@ class Input_Handler():
 
 
     def readTime(self):
-        timelist = [0,0,0,0,0,0]
+        timelist = [0,0,0,0]
         out = self.ohandler
         out.set_second_line(out.list_to_time(timelist))
         out.write_display()
         out.move_Cursor(out.cursor_col,out.cursor_row)
         out.blink()
-        for i in range (0,6):
+        for i in range (0,len(timelist)):
             if(out.cursor_col == 2 or out.cursor_col == 5):
                 out.cursor_col+=1
             out.move_Cursor(out.cursor_col,out.cursor_row)

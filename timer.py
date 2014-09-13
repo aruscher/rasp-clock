@@ -17,6 +17,6 @@ class Timer():
 
     @staticmethod
     def timelist_to_seconds(timelist):
-        hours = (timelist[0]*10+timelist[1])
-        minutes = (hours*60+timelist[2]*10+timelist[3])*60
-        return minutes+timelist[4]*10+timelist[5]
+        minutes = (timelist[0]*10+timelist[1])
+        seconds = (minutes*60+timelist[2]*10+timelist[3])
+        return seconds
